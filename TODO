@@ -1,0 +1,48 @@
+Acompanhamento Nutricional:
+  ☐ Cadastro do nutricionista
+    - O nutricionista se cadastra e após gerencia o seus clientes
+    - Login e senha
+    - Imagem da logo
+    - Cadastro de endereço
+    - Mapa de "Como Chegar"
+    - Número de registro
+    - Cadastro de redes sociais
+  ☐ Cadastro de paciente
+    - Nome
+    - Peso
+    - Altura
+    - Idade
+    - Medidas Corporais
+    - Observaçoes Paciente
+    - Objetivos 
+    - Login e senha
+    - Foto de perfil
+  ☐ Cadastro de ingredientes
+    - Valor nutricional
+    - Ingredientes equivalentes
+    - Valor do ingrediente
+  ☐ Cadastro do cardápio
+    - Vincular ingredientes
+    - Definição das quantidades
+    - Definição de periodos de consumo
+    - Previsão de gasto
+  ☐ Cadastro de receitas
+    - O nutricionista indica receitas
+  ☐ Históricos
+    - Acompanhamento de medidas
+    - Acompanhamento de peso
+    - Fotos da evolução
+  ☐ Agendamento de consultas
+    - Configuração de horários de atendimentos
+    - Exibir apenas horários disponíveis
+    - Configuração de tempo de atendimento para novas consultas e retornos
+  ☐ Financeiro
+    - Histórico de pagamentos
+    - Planos de consulta
+  ☐ O paciente informa quantidades de calorias gastas
+    - É feito um comparativo com as calorias do cardápio
+  ☐ Blog
+    - Com dicas, textos, imagens
+    - Envio de notificação sobre novos conteúdos
+  ☐ Chat com o nutricionista
+    - Link para o whatsapp
