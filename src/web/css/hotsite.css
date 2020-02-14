@@ -4,7 +4,6 @@
 }
 
 html, body {
-  background-color: #000;
   height: 100%;
   width: 100%;
 }
@@ -22,7 +21,6 @@ html, body {
 .topo {
   display: flex;
   justify-content: space-between;
-  color: #fff;
   padding: 20px;
   align-items: center;
 }
@@ -31,12 +29,12 @@ html, body {
   align-items: center;
   font-size: 24px;
 }
+.logo span { margin-left: 10px; }
 .login { font-size: 18px; }
 
 .botao-entrar {
   border: 1px solid;
   background-color: transparent;
-  color: #fff;
   padding: 10px;
   text-decoration: none;
 }
@@ -48,7 +46,6 @@ html, body {
 /* SLOGAN */
 .slogan {
   flex-grow: 1;
-  color: #fff;
 
   display: flex;
   flex-direction: column;
@@ -57,3 +54,60 @@ html, body {
 }
 .slogan h1 { font-size: 40px; }
 .slogan h3 { font-size: 22px; }
+
+/* ============== */
+/* = RESPONSIVE = */
+/* ============== */
+
+@media screen and (max-width: 549px) {
+  .slogan h1 {
+    font-size: 28px;
+    padding: 20px;
+  }
+
+  .slogan h3 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .login.desktop {
+    display: none;
+  }
+
+  .login.mobile {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .botao-entrar {
+    margin: 10px 0;
+  }
+
+  .mobile span {
+    display: none;
+  }
+
+  .topo.desktop {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .login {
+    display: block;
+  }
+
+  .login.mobile {
+    display: none;
+  }
+
+  .logo.mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 301px) and (max-width: 900px) {
+  .slogan {
+    text-align: center;
+  }
+}
