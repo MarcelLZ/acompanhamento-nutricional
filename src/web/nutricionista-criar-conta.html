@@ -6,28 +6,212 @@
   <title>AN - Nutricionista</title>
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="css/create-account.css">
 </head>
 <body>
 
   <div class="container">
-    <h1>Crie sua conta!</h1>
+    <img src="images/logo128.png" alt="">
+
+    <h2>Crie sua conta!</h2>
     <hr>
 
     <form class="criar-conta">
       <div class="row">
         <div class="col">
           <div class="form-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="logoEmpresa" required>
+              <label class="custom-file-label" for="logoEmpresa">Escolha uma imagem...</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
             <label for="name">Nome</label>
-            <input type="text" class="form-control" id="name">
+            <input type="text" class="form-control" id="name" placeholder="João">
           </div>
         </div>
   
         <div class="col">
           <div class="form-group">
             <label for="lastName">Sobrenome</label>
-            <input type="text" class="form-control" id="lastName">
+            <input type="text" class="form-control" id="lastName" placeholder="Silva">
           </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="cfn">CFN</label>
+            <input type="text" class="form-control" id="cfn">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" class="form-control" id="email" placeholder="seu@email.com.br">
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" id="password">
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="repeatPassword">Repetir senha</label>
+            <input type="password" class="form-control" id="repeatPassword">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>Dados de endereço</h2>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="cep">CEP:</label>
+            <input type="text" class="form-control" id="cep">
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="neighborhood">Bairro:</label>
+            <input type="text" class="form-control" id="neighborhood">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-sm-6">
+          <div class="form-group">
+            <label for="street">Rua:</label>
+            <input type="text" class="form-control" id="street">
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="number">Número:</label>
+            <input type="text" class="form-control" id="number">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="state">Estado</label>
+            <select class="form-control" id="state">
+              <option>Selecione...</option>
+              <option>Santa Catarina</option>
+              <option>São Paulo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="form-group">
+            <label for="city">Cidade</label>
+            <select class="form-control" id="city">
+              <option>Selecione...</option>
+              <option>Blumenau</option>
+              <option>São Paulo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="location">Como chegar?</label>
+            <input type="text" class="form-control" id="location">
+            <small id="locationHelpBlock" class="form-text text-muted">
+              Copie o seu endereço do google.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <h2>Redes Sociais</h2>
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="sr-only" for="facebook">Exemplo: facebook.com.br/seuusuario</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fab fa-facebook"></i>
+              </div>
+            </div>
+            <input type="text" class="form-control" id="facebook" placeholder="Exemplo: facebook.com.br/seuusuario">
+          </div>
+        </div>
+
+        <div class="col">
+          <label class="sr-only" for="facebook">Exemplo: twitter.com/seuusuario</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fab fa-twitter"></i>
+              </div>
+            </div>
+            <input type="text" class="form-control" id="facebook" placeholder="Exemplo: twitter.com/seuusuario">
+          </div>
+        </div>
+
+        <div class="col">
+          <label class="sr-only" for="facebook">Qual seu número para contato?</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+            </div>
+            <input type="text" class="form-control" id="facebook" placeholder="Qual seu número para contato?">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <hr>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-primary btn-lg btn-block">
+            Cadastrar!
+          </button>
+        </div>
+
+        <div class="col">
+          <a href="nutricionista-login.html" class="btn btn-secondary btn-lg btn-block">
+            Cancelar =(
+          </a>
         </div>
       </div>
     </form>
@@ -37,5 +221,6 @@
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
 </body>
 </html>
