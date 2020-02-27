@@ -35,9 +35,27 @@ function cadastrarNutricionista () {
     whatsapp: $whatsapp.value
   }
 
-  axios
-    .post('http://localhost:3000/nutricionistas', dadosEnvio)
-    .then(({ data }) => console.log(data))
+  if (
+    !dadosEnvio.nome ||
+    !dadosEnvio.sobrenome ||
+    !dadosEnvio.cfn ||
+    !dadosEnvio.email ||
+    !dadosEnvio.password ||
+    !dadosEnvio.repeatPassword ||
+    !dadosEnvio.cep ||
+    !dadosEnvio.neighborhood ||
+    !dadosEnvio.street ||
+    !dadosEnvio.number ||
+    !dadosEnvio.state ||
+    !dadosEnvio.number ||
+    !dadosEnvio.city
+  ) {
+    alert('Você precisa preencher todos os campos obrigatórios!')
+  } else {
+    axios
+      .post('http://localhost:3000/nutricionistas', dadosEnvio)
+      .then(({ data }) => console.log(data))
+  }
 }
 
 
