@@ -110,4 +110,4 @@ dist
 .vscode-test
 
 .DS_Store
-acesso_banco.json
+# acesso_banco.json
