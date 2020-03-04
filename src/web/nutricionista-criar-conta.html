@@ -86,8 +86,15 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="cep">CEP *</label>
-            <input type="text" class="form-control" id="cep">
+            <label for="consultarCep">Consulte seu CEP</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="" id="cep">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="consultarCep" onclick="consultarCEP()">
+                  Consultar
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -119,10 +126,8 @@
         <div class="col">
           <div class="form-group">
             <label for="state">Estado *</label>
-            <select class="form-control" id="state">
+            <select class="form-control" id="state" onchange="buscarCidades()">
               <option value="">Selecione...</option>
-              <option value="SC">Santa Catarina</option>
-              <option value="SP">São Paulo</option>
             </select>
           </div>
         </div>
@@ -131,9 +136,7 @@
           <div class="form-group">
             <label for="city">Cidade *</label>
             <select class="form-control" id="city">
-              <option value="">Selecione...</option>
-              <option value="Blumenau">Blumenau</option>
-              <option value="SaoPaulo">São Paulo</option>
+              <option value="">Selecione o estado...</option>
             </select>
           </div>
         </div>
@@ -218,6 +221,94 @@
     </form>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="salvoComSucesso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Você foi cadastrado com sucesso!
+          </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="erroAoSalvar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Upss! Algo de errado não está certo, tente novamente.
+          </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="senhasNaoConferem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Parece que você digitou senhas diferentes. Por favor revise os dados.
+          </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="preenchaTodasOsCampos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Por favor, preencha todos os campos.
+          </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="cepNaoEncontrado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            CEP não encontrado.
+          </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- scripts sempre no final -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -225,6 +316,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+  <script src="js/cadastro-campos.js"></script>
   <script src="js/cadastro.js"></script>
+  <script src="js/consultar-cep.js"></script>
 </body>
 </html>

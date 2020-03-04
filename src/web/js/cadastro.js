@@ -1,20 +1,3 @@
-const $nome = document.getElementById('name')
-const $sobrenome = document.getElementById('lastName')
-const $cfn = document.getElementById('cfn')
-const $email = document.getElementById('email')
-const $password = document.getElementById('password')
-const $repeatPassword = document.getElementById('repeatPassword')
-const $cep = document.getElementById('cep')
-const $neighborhood = document.getElementById('neighborhood')
-const $street = document.getElementById('street')
-const $number = document.getElementById('number')
-const $state = document.getElementById('state')
-const $city = document.getElementById('city')
-const $location = document.getElementById('location')
-const $facebook = document.getElementById('facebook')
-const $twitter = document.getElementById('twitter')
-const $whatsapp = document.getElementById('whatsapp')
-
 function cadastrarNutricionista () {
   const dadosEnvio = {
     nome: $nome.value,
@@ -50,13 +33,65 @@ function cadastrarNutricionista () {
     !dadosEnvio.number ||
     !dadosEnvio.city
   ) {
-    alert('Você precisa preencher todos os campos obrigatórios!')
-  } else {
-    axios
-      .post('http://localhost:3000/nutricionistas', dadosEnvio)
-      .then(({ data }) => console.log(data))
+    $('#preenchaTodasOsCampos').modal({
+      backdrop: 'static',
+      show: true
+    })
+
+    return
   }
+  
+  if (dadosEnvio.password !== dadosEnvio.repeatPassword) {
+    $('#senhasNaoConferem').modal({
+      backdrop: 'static',
+      show: true
+    })
+
+    return
+  }
+
+  axios
+    .post('http://localhost:3000/nutricionistas', dadosEnvio)
+    .then(() => {
+      $('#salvoComSucesso').modal('show')
+    })
+    .catch(() => {
+      $('#erroAoSalvar').modal({
+        backdrop: 'static',
+        show: true
+      })
+    })
 }
+
+function buscarEstados () {
+  axios
+    .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+    .then(({ data }) => {
+      const htmlDoSelectEstados = data.map(function (estado) {
+        return `<option value="${estado.sigla}" data-id="${estado.id}">${estado.nome}</option>`
+      })
+
+      $state.insertAdjacentHTML('beforeend', htmlDoSelectEstados)
+    })
+}
+
+function buscarCidades () {
+  const indiceEstadoSelecionado = $state.selectedIndex
+  const stateId = $state.options[indiceEstadoSelecionado].getAttribute('data-id')
+
+  return axios
+    .get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateId}/municipios`)
+    .then(({ data }) => {
+      const htmlDoSelectCidades = data.map(function (cidade) {
+        return `<option value="${cidade.id}">${cidade.nome}</option>`
+      })
+
+      $city.options.length = 0
+      $city.insertAdjacentHTML('beforeend', htmlDoSelectCidades)
+    })
+}
+
+buscarEstados()
 
 
 
