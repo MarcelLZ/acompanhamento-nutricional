@@ -1,11 +1,12 @@
 import React from 'react'
 
 import { WithLogo } from '../../components/Page/WithLogo'
+import { NutriRegistry } from '../../components/NutriRegistry'
 
 function CreateAccount () {
   return (
     <WithLogo>
-      <h1>Criar conta</h1>
+      <NutriRegistry />
     </WithLogo>
   )
 }

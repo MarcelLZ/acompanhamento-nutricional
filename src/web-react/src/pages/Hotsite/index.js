@@ -17,9 +17,9 @@ function Hotsite () {
   return (
     <WithLogo>
       <RightCircle>
-        <LoginButton to="/create-account" outlined>
+        <LoginButton to="/login">
           <FaUserLock />
-          Entrar
+          <span style={{ margin: '0 10px' }}>Entrar</span>
         </LoginButton>
 
         <img
@@ -38,7 +38,7 @@ function Hotsite () {
       <Content>
         <Title>Acompanhamento nutricional personalizado</Title>
         <Subtitle>Melhore a sua saúde e o seu bem-estar sem sair de casa!</Subtitle>
-        <SignUpButton to="/">Cadastre-se</SignUpButton>
+        <SignUpButton to="/create-account" outlined>Cadastre-se</SignUpButton>
       </Content>
 
       <AppImage>
