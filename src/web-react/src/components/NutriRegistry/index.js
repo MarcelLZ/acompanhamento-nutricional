@@ -101,7 +101,7 @@ function NutriRegistry () {
 
       <Row>
         <LabelInput
-          label="Como chechar?"
+          label="Como chegar?"
           id="location"
           placeholder="Copie o seu endereço do Google Maps"
         />
