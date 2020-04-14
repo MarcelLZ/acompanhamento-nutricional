@@ -4,6 +4,8 @@ import { Link as RouterLink } from 'react-router-dom'
 const Link = styled(RouterLink)`
   display: flex;
   justify-content: center;
+  align-items: center;
+
   text-transform: uppercase;
   color: ${({ outlined }) => outlined ? '#00B049' : '#fff' };
   background: ${({ outlined }) => outlined ? '#fff' : '#00B049'};
