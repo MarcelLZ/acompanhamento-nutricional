@@ -1,45 +1,25 @@
-import React from 'react';
-import { Button, Container, Row, Col } from 'reactstrap'
+import React, { Fragment } from 'react';
+import { createGlobalStyle } from 'styled-components'
 
-import { LabelInput } from './components/Input'
+import { Routes } from './routes'
+
+/**
+ * Aplica estilos globalmente.
+ */
+const GlobalStyle = createGlobalStyle`
+  html, body, #root {
+    width: 100%;
+    height: 100%;
+  }
+`
 
 function App() {
   return (
-    <Container fluid>
-      <Row>
-        <Col>
-          <LabelInput id="xpto" helpText="Teste" />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <LabelInput
-            id="inputEmail"
-            label="Seu email"
-            type="email"
-            helpText="seu@email.com"
-          />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <LabelInput
-            id="inputSenha"
-            label="Sua senha"
-            type="password"
-          />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Button color="success">Entrar!</Button>
-        </Col>
-      </Row>
-    </Container>
-  );
+    <Fragment>
+      <GlobalStyle />
+      <Routes />
+    </Fragment>
+  )
 }
 
 export default App;
