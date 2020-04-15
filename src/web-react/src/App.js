@@ -8,6 +8,7 @@ import { Routes } from './routes'
  */
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
+    font-family: 'Montserrat', sans-serif;
     width: 100%;
     height: 100%;
   }
