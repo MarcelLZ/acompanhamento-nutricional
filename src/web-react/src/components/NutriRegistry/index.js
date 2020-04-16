@@ -1,7 +1,7 @@
 import React from 'react'
-import { FaUserLock } from 'react-icons/fa'
+import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 
-import { LabelInput, IconInput } from '../Input'
+import { LabelInput, IconInput, ButtonInput } from '../Input'
 import { Button } from '../Button'
 
 import { FormContainer, Space, Fieldset, Legend, Row } from './styles'
@@ -67,9 +67,11 @@ function NutriRegistry () {
         <Legend>Dados do endereço</Legend>
 
         <Row>
-          <LabelInput
+          <ButtonInput
             label="CEP"
             id="cep"
+            placeholder="Qual seu CEP?"
+            right="Consultar"
           />
 
           <Space />
@@ -122,7 +124,7 @@ function NutriRegistry () {
 
         <Row>
           <IconInput
-            left="W"
+            left={<FaFacebook />}
             id="facebook"
             placeholder="facebook.com/"
           />
@@ -130,7 +132,7 @@ function NutriRegistry () {
           <Space />
 
           <IconInput
-            left="T"
+            left={<FaTwitter />}
             id="twitter"
             placeholder="twitter.com/"
           />
@@ -138,7 +140,7 @@ function NutriRegistry () {
 
         <Row>
           <IconInput
-            left={<FaUserLock />}
+            left={<FaInstagram />}
             id="instagram"
             placeholder="instagram.com/"
           />
@@ -146,7 +148,7 @@ function NutriRegistry () {
           <Space />
 
           <IconInput
-            left="W"
+            left={<FaWhatsapp />}
             id="whatsapp"
             placeholder="Número para contato"
           />
