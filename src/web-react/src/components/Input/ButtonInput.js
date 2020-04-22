@@ -9,7 +9,7 @@ function randomId () {
   return Math.floor(Math.random() * 1000) + 1
 }
 
-function ButtonInput ({ label, id, placeholder, left, right }) {
+function ButtonInput ({ label, id, placeholder, left, right, onPress, onChangeText, value }) {
   const newID = id ? id : randomId()
 
   function removeBorderRadius () {
@@ -18,14 +18,24 @@ function ButtonInput ({ label, id, placeholder, left, right }) {
       : { borderTopRightRadius: 0, borderBottomRightRadius: 0 }
   }
 
+  function handleChange (e) {
+    onChangeText && onChangeText(e.target.value)
+  }
+
   return (
     <ButtonInputContainer>
       {label && <Label for={newID}>{label}</Label>}
-      <InputGroup>
 
+      <InputGroup>
         {left && (
           <InputGroupAddon addonType="prepend">
-            <Button outlined style={{ padding: '5px' }}>{left}</Button>
+            <Button
+              outlined
+              style={{ padding: '5px' }}
+              onClick={onPress}
+            >
+              {left}
+            </Button>
           </InputGroupAddon>
         )}
         
@@ -33,11 +43,19 @@ function ButtonInput ({ label, id, placeholder, left, right }) {
           id={newID}
           placeholder={placeholder}
           style={removeBorderRadius()}
+          onChange={handleChange}
+          value={value}
         />
 
         {right && (
           <InputGroupAddon addonType="apend">
-            <Button outlined style={{ padding: '5px' }}>{right}</Button>
+            <Button
+              outlined
+              style={{ padding: '5px' }}
+              onClick={onPress}
+            >
+              {right}
+            </Button>
           </InputGroupAddon>
         )}
       </InputGroup>

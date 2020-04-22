@@ -1,12 +1,103 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 
 import { LabelInput, IconInput, ButtonInput } from '../Input'
 import { Button } from '../Button'
+import { Select } from '../Select'
 
 import { FormContainer, Space, Fieldset, Legend, Row } from './styles'
 
 function NutriRegistry () {
+  const [states, setStates] = useState()
+  const [cities, setCities] = useState()
+  const [selectedStateInitials, setStateInitials] = useState()
+  const [disabled, setDisabled] = useState(false)
+
+  const [data, setData] = useState({
+    name: '',
+    lastName: '',
+    CPF: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+    CEP: '',
+    neighborhood: '',
+    street: '',
+    number: '',
+    state: '',
+    city: '',
+    location: '',
+    facebook: '',
+    instagram: '',
+    twitter: '',
+    whatsapp: ''
+  })
+
+  useEffect(getStates, [])
+  useEffect(getCities, [selectedStateInitials])
+
+  // Buscar estados
+  function getStates () {
+    axios
+      .get('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+      .then(({ data }) => {
+        const states = data.map(function (state) {
+          return { id: state.id, value: state.sigla, text: state.nome } 
+        })
+
+        setStates(states)
+      })
+  }
+
+  // Buscar cidades
+  function getCities () {
+    if (selectedStateInitials) {
+      const selectedState = states.find(state => state.value === selectedStateInitials)
+      axios
+        .get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState.id}/municipios`)
+        .then(({ data }) => {
+          const cities = data.map(function (city) {
+            return { value: city.id, text: city.nome }
+          })
+
+          setCities(cities)
+        })
+    }
+  }
+
+  function onChangeValue (field, value) {
+    setData({
+      ...data,
+      [field]: value
+    })
+  }
+
+  function getByCEP () {
+    axios
+      .get(`http://viacep.com.br/ws/${data.CEP}/json/`)
+      .then(({ data: foundData }) => {
+        setData({
+          ...data,
+          street: foundData.logradouro,
+          neighborhood: foundData.bairro,
+          state: foundData.uf,
+          city: foundData.ibge
+        })
+
+        setStateInitials(foundData.uf)
+        setDisabled(true)
+      })
+  }
+
+  function handleStateChange (initials) {
+    setStateInitials(initials)
+    setData({
+      ...data,
+      state: initials
+    })
+  }
+
   return (
     <FormContainer>
       <Fieldset>
@@ -17,6 +108,8 @@ function NutriRegistry () {
             label="Nome"
             id="name"
             placeholder="João"
+            value={data.name}
+            onChangeText={(text) => onChangeValue('name', text)}
           />
 
           <Space />
@@ -25,6 +118,8 @@ function NutriRegistry () {
             label="Sobrenome"
             id="lastName"
             placeholder="Silva"
+            value={data.lastName}
+            onChangeText={(text) => onChangeValue('lastName', text)}
           />
         </Row>
 
@@ -34,6 +129,8 @@ function NutriRegistry () {
             label="CPF"
             id="cpf"
             placeholder="088.347.708-66"
+            value={data.CPF}
+            onChangeText={(text) => onChangeValue('CPF', text)}
           />
 
           <Space />
@@ -43,6 +140,8 @@ function NutriRegistry () {
             label="Email"
             id="email"
             placeholder="joao@email.com"
+            value={data.email}
+            onChangeText={(text) => onChangeValue('email', text)}
           />
         </Row>
 
@@ -51,6 +150,8 @@ function NutriRegistry () {
             type="password"
             label="Senha"
             id="password"
+            value={data.password}
+            onChangeText={(text) => onChangeValue('password', text)}
           />
 
           <Space />
@@ -59,6 +160,8 @@ function NutriRegistry () {
             type="password"
             label="Repretir senha"
             id="repeat-password"
+            value={data.repeatPassword}
+            onChangeText={(text) => onChangeValue('repeatPassword', text)}
           />
         </Row>
       </Fieldset>
@@ -72,6 +175,9 @@ function NutriRegistry () {
             id="cep"
             placeholder="Qual seu CEP?"
             right="Consultar"
+            onPress={getByCEP}
+            onChangeText={(text) => onChangeValue('CEP', text)}
+            value={data.CEP}
           />
 
           <Space />
@@ -79,6 +185,9 @@ function NutriRegistry () {
           <LabelInput
             label="Bairro"
             id="neighborhood"
+            value={data.neighborhood}
+            disabled={disabled}
+            onChangeText={(text) => onChangeValue('neighborhood', text)}
           />
         </Row>
 
@@ -86,6 +195,9 @@ function NutriRegistry () {
           <LabelInput
             label="Rua"
             id="street"
+            value={data.street}
+            disabled={disabled}
+            onChangeText={(text) => onChangeValue('street', text)}
           />
 
           <Space />
@@ -93,20 +205,30 @@ function NutriRegistry () {
           <LabelInput
             label="Número"
             id="number"
+            value={data.number}
+            onChangeText={(text) => onChangeValue('number', text)}
           />
         </Row>
 
         <Row>
-          <LabelInput
+          <Select
             label="Estado"
             id="state"
+            options={states}
+            onSelect={handleStateChange}
+            value={data.state}
+            disabled={disabled}
           />
 
           <Space />
 
-          <LabelInput
+          <Select
             label="Cidade"
             id="city"
+            options={cities}
+            value={data.city}
+            disabled={disabled}
+            onSelect={(IBGECode) => onChangeValue('city', IBGECode)}
           />
         </Row>
 
@@ -115,6 +237,8 @@ function NutriRegistry () {
             label="Como chegar?"
             id="location"
             placeholder="Copie o seu endereço do Google Maps"
+            value={data.location}
+            onChangeText={(text) => onChangeValue('location', text)}
           />
         </Row>
       </Fieldset>
@@ -127,6 +251,8 @@ function NutriRegistry () {
             left={<FaFacebook />}
             id="facebook"
             placeholder="facebook.com/"
+            value={data.facebook}
+            onChangeText={(text) => onChangeValue('facebook', text)}
           />
 
           <Space />
@@ -135,6 +261,8 @@ function NutriRegistry () {
             left={<FaTwitter />}
             id="twitter"
             placeholder="twitter.com/"
+            value={data.twitter}
+            onChangeText={(text) => onChangeValue('twitter', text)}
           />
         </Row>
 
@@ -143,6 +271,8 @@ function NutriRegistry () {
             left={<FaInstagram />}
             id="instagram"
             placeholder="instagram.com/"
+            value={data.instagram}
+            onChangeText={(text) => onChangeValue('instagram', text)}
           />
 
           <Space />
@@ -151,6 +281,8 @@ function NutriRegistry () {
             left={<FaWhatsapp />}
             id="whatsapp"
             placeholder="Número para contato"
+            value={data.whatsapp}
+            onChangeText={(text) => onChangeValue('whatsapp', text)}
           />
         </Row>
       </Fieldset>

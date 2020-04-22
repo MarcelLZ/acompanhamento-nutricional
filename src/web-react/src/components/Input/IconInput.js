@@ -7,8 +7,12 @@ function randomId () {
   return Math.floor(Math.random() * 1000) + 1
 }
 
-function IconInput ({ label, id, type = "text", placeholder, left, right }) {
+function IconInput ({ label, id, type = "text", placeholder, left, right, value, onChangeText }) {
   const newID = id ? id : randomId()
+
+  function handleChange (e) {
+    onChangeText && onChangeText(e.target.value)
+  }
 
   return (
     <IconInputContainer>
@@ -21,7 +25,13 @@ function IconInput ({ label, id, type = "text", placeholder, left, right }) {
           </GroupAddon>
         )}
 
-        <Input type={type} id={newID} placeholder={placeholder} />
+        <Input
+          type={type}
+          id={newID}
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}  
+        />
 
         {right && (
           <GroupAddon addonType="apend">
