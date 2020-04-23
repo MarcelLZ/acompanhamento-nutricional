@@ -1,11 +1,11 @@
 import React from 'react'
-import { FormGroup, Label, Input, FormText } from 'reactstrap'
+import { FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap'
 
 function randomId () {
   return Math.floor(Math.random() * 1000) + 1
 }
 
-function LabelInput ({ label = "Sem label", id, helpText, type = "text", placeholder, value, onChangeText, disabled }) {
+function LabelInput ({ label = "Sem label", id, helpText, type = "text", placeholder, value, onChangeText, disabled, invalid }) {
   const newID = id ? id : randomId()
   const textoParaAparecer = !id ? 'Por favor informe o ID!' : helpText
 
@@ -24,9 +24,11 @@ function LabelInput ({ label = "Sem label", id, helpText, type = "text", placeho
         value={value}
         onChange={handleChange}
         disabled={disabled}
+        invalid={invalid}
       />
 
-      {textoParaAparecer ? <FormText id={`small-${id}`}>{textoParaAparecer}</FormText> : null}
+      {invalid && textoParaAparecer ? <FormFeedback id={`feedback-${id}`}>{textoParaAparecer}</FormFeedback> : null}
+      {!invalid && textoParaAparecer ? <FormText id={`small-${id}`}>{textoParaAparecer}</FormText> : null}
     </FormGroup>
   )
 }
