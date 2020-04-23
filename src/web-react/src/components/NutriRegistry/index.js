@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { FaFacebook, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa'
+import { useHistory } from 'react-router-dom'
+
+import { saveNutri } from '../../services/nutri-save'
 
 import { LabelInput, IconInput, ButtonInput } from '../Input'
 import { Button } from '../Button'
@@ -10,6 +13,7 @@ import { Select } from '../Select'
 import { FormContainer, Space, Fieldset, Legend, Row } from './styles'
 
 function NutriRegistry () {
+  const history = useHistory()
   const [states, setStates] = useState()
   const [cities, setCities] = useState()
   const [selectedStateInitials, setStateInitials] = useState()
@@ -125,6 +129,29 @@ function NutriRegistry () {
 
   function handleSubmit (e) {
     validateRequiredFields()
+
+    saveNutri(data)
+      .then(() => {
+        Swal.fire({
+          title: 'Parabéns!',
+          text: "Cadastro realizado com sucesso!",
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Legal!'
+        }).then((result) => {
+          if (result.value) {
+            history.push('/')
+          }
+        })
+      })
+      .catch(() => {
+        Swal.fire(
+          'Que pena!',
+          'Não consegui cadastrar você no sistema. Por favor, tente novamente!',
+          'error'
+        )
+      })
+
     e.preventDefault()
   }
 
