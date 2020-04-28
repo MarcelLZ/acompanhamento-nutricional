@@ -2,9 +2,9 @@ import React from 'react'
 
 import { Container } from './styles'
 
-function Card ({ children }) {
+function Card ({ children, ...rest }) {
   return (
-    <Container>
+    <Container {...rest}>
       {children}
     </Container>
   )

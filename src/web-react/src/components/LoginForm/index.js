@@ -29,7 +29,7 @@ function LoginForm () {
             placeholder="Senha"
           />
 
-          <ForgetPassword to="/create-account">
+          <ForgetPassword to="/forgot-password">
             Esqueceu sua senha?
           </ForgetPassword>
 
