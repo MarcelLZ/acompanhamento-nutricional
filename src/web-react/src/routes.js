@@ -10,6 +10,7 @@ import {
  */
 import { Hotsite } from './pages/Hotsite'
 import { CreateAccount } from './pages/CreateAccount'
+import { Login } from './pages/Login'
 
 /**
  * Páginas habilitadas
@@ -18,6 +19,10 @@ function Routes () {
   return (
     <Router>
       <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+
         <Route path="/create-account">
           <CreateAccount />
         </Route>

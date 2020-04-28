@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Container } from './styles'
 
-function Blank ({ children }) {
+function Card ({ children }) {
   return (
     <Container>
       {children}
@@ -10,4 +10,4 @@ function Blank ({ children }) {
   )
 }
 
-export { Blank }
+export { Card }
