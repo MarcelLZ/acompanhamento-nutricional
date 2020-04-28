@@ -6,6 +6,7 @@ import { Card } from '../Card'
 import { Logo } from './Logo'
 import { IconInput } from '../Input/IconInput'
 import { Button } from '../Button'
+import { Switch } from '../Switch'
 
 import { Container, Form, ForgetPassword, IsNutri, NoAccount } from './styles'
 
@@ -32,7 +33,12 @@ function LoginForm () {
             Esqueceu sua senha?
           </ForgetPassword>
 
-          <IsNutri>a</IsNutri>
+          <IsNutri>
+            <Switch
+              name="isNutry"
+              label="Sou nutricionista"
+            />
+          </IsNutri>
 
           <Button type="submit">
             Entrar
