@@ -5,7 +5,7 @@ const colecaoNutricionistas = firebase
 
 function salvarNutricionista (dados) {
   colecaoNutricionistas
-    .doc(dados.nome)
+    .doc(dados.name)
     .set(dados)
 }
 
