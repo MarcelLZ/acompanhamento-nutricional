@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AiOutlineMail, AiOutlineKey } from 'react-icons/ai'
+
+import { login } from '../../services/auth'
 
 import { Card } from '../Card'
 import { Logo } from './Logo'
@@ -11,22 +13,39 @@ import { Switch } from '../Switch'
 import { Container, Form, ForgetPassword, IsNutri, NoAccount } from './styles'
 
 function LoginForm () {
+  const [data, setData] = useState({ email: '', password: '' })
+
+  function onChangeValue (field, value) {
+    setData({
+      ...data,
+      [field]: value
+    })
+  }
+
+  function handleSubmit (e) {
+    e.preventDefault()
+    console.log({ data })
+    // login(dados do usuário)
+  }
+
   return (
     <Card>
       <Container>
         <Logo />
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <IconInput
             left={<AiOutlineMail />}
             id="email"
             placeholder="Email"
+            onChangeText={(text) => onChangeValue('email', text)}
           />
 
           <IconInput
             left={<AiOutlineKey />}
             id="password"
             placeholder="Senha"
+            onChangeText={(text) => onChangeValue('password', text)}
           />
 
           <ForgetPassword to="/forgot-password">
