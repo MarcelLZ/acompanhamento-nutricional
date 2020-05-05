@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 import { AiOutlineMail, AiOutlineKey } from 'react-icons/ai'
 
 import { login } from '../../services/auth'
@@ -13,6 +15,7 @@ import { Switch } from '../Switch'
 import { Container, Form, ForgetPassword, IsNutri, NoAccount } from './styles'
 
 function LoginForm () {
+  const history = useHistory()
   const [data, setData] = useState({ email: '', password: '' })
 
   function onChangeValue (field, value) {
@@ -24,8 +27,18 @@ function LoginForm () {
 
   function handleSubmit (e) {
     e.preventDefault()
-    console.log({ data })
-    // login(dados do usuário)
+    login(data)
+      .then(({ data }) => {
+        localStorage.setItem('user', JSON.stringify(data));
+        history.push('/dashboard')
+      })
+      .catch(() => {
+        Swal.fire(
+          'Ops!',
+          'Parece que o usuário e/ou senha estão incorretos. Por favor, revise os dados e tente novamente',
+          'error'
+        )
+      })
   }
 
   return (
