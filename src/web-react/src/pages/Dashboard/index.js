@@ -1,7 +1,13 @@
 import React from 'react'
 
+import { WithNavigation } from '../../components/Page/WithNavigation'
+
 function Dashboard () {
-  return <h1>Dashboard!!</h1>
+  return (
+    <WithNavigation>
+      <p>Isso é um texto qualquer!</p>
+    </WithNavigation>
+  )
 }
 
 export { Dashboard }
