@@ -1,3 +1,5 @@
+const service = require('./service')
+
 const { Router } = require('express')
 const router = Router()
 
@@ -6,7 +8,8 @@ router.get('/', function (req, res) {
 })
 
 router.post('/', function (req, res) {
-  res.json(req.body)
+  service.salvarPaciente(req.body)
+  res.sendStatus(204)
 })
 
 module.exports = router
