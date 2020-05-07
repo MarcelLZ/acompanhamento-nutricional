@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { MdDashboard, MdFace, MdTouchApp } from 'react-icons/md'
 
 import {
@@ -15,9 +16,18 @@ import {
 } from './styles'
 
 function Navbar () {
+  const history = useHistory()
+  const [userName, setUserName] = useState()
+
+  useEffect(function () {
+    const userData = localStorage.getItem('user')
+    const { name } = JSON.parse(userData)
+    setUserName(name)
+  }, [])
+
   function signOut () {
-    // limpar o local storage
-    // navegar para o hotsite
+    localStorage.removeItem('user')
+    history.push('/')
   }
 
   return (
@@ -30,14 +40,14 @@ function Navbar () {
 
         <Menu>
           <MenuItem>
-            <StyledLink>
+            <StyledLink to="/dashboard">
               <MdDashboard />
               Início
             </StyledLink>
           </MenuItem>
 
           <MenuItem>
-            <StyledLink>
+            <StyledLink to="/customers">
               <MdFace />
               Clientes
             </StyledLink>
@@ -55,8 +65,8 @@ function Navbar () {
 
       <User>
         <Avatar />
-        <Name>Silva Santos</Name>
-        <SignOut>
+        <Name>{userName}</Name>
+        <SignOut type="button" onClick={signOut}>
           <MdTouchApp />
           Sair
         </SignOut>
