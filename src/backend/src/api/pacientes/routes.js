@@ -4,7 +4,16 @@ const { Router } = require('express')
 const router = Router()
 
 router.get('/', function (req, res) {
-  res.json({ msg: 'API/pacientes' })
+  const header = req.headers
+
+  service
+    .buscarPacientes(header.token)
+    .then(response => {
+      res.status(200).json(response)
+    })
+    .catch(error => { 
+      res.status(500).json({ msg: error })
+    })
 })
 
 router.post('/', function (req, res) {

@@ -28,7 +28,7 @@ function login ({ email, password }) {
       return {
         name: foundUser.name,
         email: foundUser.email,
-        token: jwt.sign({ name: foundUser.name, email: foundUser.email }, process.env.SECRET)
+        token: jwt.sign({ code: foundUser.name, name: foundUser.name, email: foundUser.email }, process.env.SECRET)
       }
     })
 }
