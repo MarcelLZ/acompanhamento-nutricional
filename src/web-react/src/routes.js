@@ -15,6 +15,7 @@ import { CreateAccount } from './pages/CreateAccount'
 import { Login } from './pages/Login'
 import { ForgotPassword } from './pages/ForgotPassword'
 import { Dashboard } from './pages/Dashboard'
+import { Customers } from './pages/Customers'
 
 /**
  * 
@@ -31,6 +32,10 @@ function Routes () {
   return (
     <Router>
       <Switch>
+        <PrivateRoute path="/customers">
+          <Customers />
+        </PrivateRoute>
+
         <PrivateRoute path="/dashboard">
           <Dashboard />
         </PrivateRoute>
